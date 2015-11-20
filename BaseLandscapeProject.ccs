@@ -5,6 +5,8 @@
       <RootFolder Name=".">
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
+        <Project Name="Game.csd" Type="Scene" />
+        <Project Name="Credits.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
