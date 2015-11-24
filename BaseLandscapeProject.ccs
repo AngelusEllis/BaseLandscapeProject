@@ -7,6 +7,8 @@
         <Image Name="HelloWorld.png" />
         <Project Name="Game.csd" Type="Scene" />
         <Project Name="Credits.csd" Type="Scene" />
+        <Image Name="PlayerShip.png" />
+        <Image Name="SmallAstroid.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

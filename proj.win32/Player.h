@@ -5,5 +5,9 @@ class Player
 public:
 	Player();
 	~Player();
+	void setHealth(int);
+	int getHealth();
+	bool isDead();
+
 };
 
