@@ -9,6 +9,9 @@
         <Project Name="Credits.csd" Type="Scene" />
         <Image Name="PlayerShip.png" />
         <Image Name="SmallAstroid.png" />
+        <Image Name="HostileShip1.png" />
+        <Image Name="HostileShip2.png" />
+        <Image Name="menu-background.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
