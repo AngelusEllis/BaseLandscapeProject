@@ -1,6 +1,8 @@
 #include "HelloWorldScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "Game.h"
+#include "Credits.h"
 
 USING_NS_CC;
 
@@ -34,6 +36,36 @@ bool HelloWorld::init()
     auto rootNode = CSLoader::createNode("MainScene.csb");
 
     addChild(rootNode);
+
+	auto startButton = rootNode->getChildByName<cocos2d::ui::Button*>("start_button");
+	auto creditsButton = rootNode->getChildByName<cocos2d::ui::Button*>("credits_button");
+	auto exitButton = rootNode->getChildByName<cocos2d::ui::Button*>("exit_button");
+
+	startButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			auto scene = game::createScene();
+			Director::getInstance()->replaceScene(scene);
+		}
+	});
+
+	creditsButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			auto scene = Credits::createScene();
+			Director::getInstance()->replaceScene(scene);
+		}
+	});
+
+	exitButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			CCDirector::sharedDirector()->end();
+		}
+	});
 
     return true;
 }

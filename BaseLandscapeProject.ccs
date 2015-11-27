@@ -12,6 +12,9 @@
         <Image Name="HostileShip1.png" />
         <Image Name="HostileShip2.png" />
         <Image Name="menu-background.png" />
+        <Image Name="arrow.png" />
+        <Image Name="arrowPressed.png" />
+        <Image Name="shot.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
