@@ -84,6 +84,38 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="HealthBar" ActionTag="-1881748513" Tag="16" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="380.0000" RightMargin="380.0000" TopMargin="44.2000" BottomMargin="581.8000" ProgressInfo="100" ctype="LoadingBarObjectData">
+            <Size X="200.0000" Y="14.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="480.0000" Y="588.8000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="24" G="237" B="17" />
+            <PrePosition X="0.5000" Y="0.9200" />
+            <PreSize X="0.2083" Y="0.0219" />
+            <ImageFileData Type="Default" Path="Default/LoadingBarFile.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Health" ActionTag="25219641" Tag="17" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="435.0000" RightMargin="435.0000" TopMargin="14.1000" BottomMargin="602.9000" FontSize="20" LabelText="Health 100%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="112.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="480.0000" Y="614.4000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.9600" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Score" ActionTag="-2030108634" Tag="19" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="819.0000" RightMargin="51.0000" TopMargin="14.1000" BottomMargin="602.9000" FontSize="20" LabelText="Score: 0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="75.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="864.0000" Y="614.4000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9000" Y="0.9600" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

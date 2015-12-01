@@ -30,6 +30,7 @@ private:
 	bool upButtonTouched;
 	bool downButtonTouched;
 	bool fireButtonTouched;
+	float firetimer;
 	bullet *shot[50];
 };
 

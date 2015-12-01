@@ -38,16 +38,17 @@ bool game::init()
 	upButtonTouched = false;
 	downButtonTouched = false;
 	fireButtonTouched = false;
+	firetimer = 0;
 
 	for (int i = 0; i < 50; i++)
 	{
 		shot[i] = new bullet();
 		shot[i]->fired = false;
 		shot[i]->image = Sprite::create("shot.png");
+		addChild(shot[i]->image);
 	}
 
-	auto test = Sprite::create("PlayerShip.png");
-	test->setPosition(Vec2(100, 200));
+	
 
 	bg = (Sprite*)rootNode->getChildByName("bg");
 	ship = (Sprite*)rootNode->getChildByName("PlayerShip");
@@ -117,18 +118,28 @@ void game::update(float delta)
 		ship->runAction(moveBy);
 	}
 
-	if (fireButtonTouched == true)
+	if (fireButtonTouched == true && firetimer == 0)
 	{
 		for (int i = 0; i < 50; i++)
 		{
 			if (shot[i]->fired == false)
 			{
-				shot[i]->image->setPosition(Vec2(100, 200));
+				shot[i]->image->setPosition(Vec2(currentPos.x+75, currentPos.y));
+				shot[i]->fired = true;
+				firetimer = 1;
 				break;
 			}
 		}
 	}
 
+	if (firetimer > 0)
+	{
+		firetimer += delta;
+		if (firetimer > 1.3)
+		{
+			firetimer = 0;
+		}
+	}
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -136,6 +147,12 @@ void game::update(float delta)
 		{
 			auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
 			shot[i]->image->runAction(moveBy);
+			Vec2 shotPos = shot[i]->image->getPosition();
+			if (shotPos.x > 970)
+			{
+				shot[i]->image->setPosition(Vec2(-10, -10));
+				shot[i]->fired = false;
+			}
 		}
 	}
 
