@@ -6,13 +6,35 @@
       <ObjectData Name="Scene" ctype="GameNodeObjectData">
         <Size X="960.0000" Y="640.0000" />
         <Children>
-          <AbstractNodeData Name="PlayerShip_3" ActionTag="1172907418" Tag="14" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="-215.5049" RightMargin="594.5049" TopMargin="-310.8477" BottomMargin="-231.1524" ctype="SpriteObjectData">
+          <AbstractNodeData Name="bg" Visible="False" ActionTag="-1843629797" Tag="16" IconVisible="False" LeftMargin="-75.8176" RightMargin="-4064.1826" TopMargin="28.7807" BottomMargin="11.2193" ctype="SpriteObjectData">
+            <Size X="5100.0000" Y="600.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="2474.1824" Y="311.2193" />
+            <Scale ScaleX="1.0000" ScaleY="1.3909" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="2.5773" Y="0.4863" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="background.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Particle_1" ActionTag="499146104" Tag="7" IconVisible="True" LeftMargin="1054.0000" RightMargin="-94.0000" TopMargin="271.0000" BottomMargin="369.0000" ctype="ParticleObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="1054.0000" Y="369.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="1.0979" Y="0.5766" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="particle_texture (1).plist" Plist="" />
+            <BlendFunc Src="770" Dst="1" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="PlayerShip" ActionTag="1172907418" Tag="14" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="-213.7000" RightMargin="592.7000" TopMargin="-271.0000" BottomMargin="-271.0000" ctype="SpriteObjectData">
             <Size X="581.0000" Y="1182.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="74.9951" Y="359.8476" />
+            <Position X="76.8000" Y="320.0000" />
             <Scale ScaleX="0.1200" ScaleY="0.1200" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0781" Y="0.5623" />
+            <PrePosition X="0.0800" Y="0.5000" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="PlayerShip.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -25,7 +47,7 @@
             <CColor A="255" R="255" G="0" B="0" />
             <PrePosition X="0.9300" Y="0.1000" />
             <PreSize X="0.0833" Y="0.1250" />
-            <TextColor A="255" R="255" G="255" B="255" />
+            <TextColor A="255" R="0" G="0" B="0" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
             <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
             <NormalFileData Type="Default" Path="Default/Button_Normal.png" Plist="" />

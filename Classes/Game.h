@@ -1,8 +1,14 @@
-#ifndef __GAME_SCENE_H__
-#define __GAME_SCENE_H__
+#ifndef __Game_SCENE_H__
+#define __Game_SCENE_H__
 
 #include "cocos2d.h"
-#include "Struts.h"
+
+struct bullet
+{
+	cocos2d::Sprite* image;
+	bool fired;
+
+};
 
 class game : public cocos2d::Layer
 {
@@ -17,6 +23,14 @@ public:
     CREATE_FUNC(game);
 
 	void update(float) override;
+
+private:
+	cocos2d::Sprite* bg;
+	cocos2d::Sprite* ship;
+	bool upButtonTouched;
+	bool downButtonTouched;
+	bool fireButtonTouched;
+	bullet *shot[50];
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif 

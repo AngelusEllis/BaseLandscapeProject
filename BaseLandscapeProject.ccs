@@ -15,6 +15,9 @@
         <Image Name="arrow.png" />
         <Image Name="arrowPressed.png" />
         <Image Name="shot.png" />
+        <PlistParticleFile Name="particle_texture (1).plist" />
+        <Image Name="farback.jpg" />
+        <Image Name="background.jpg" />
       </RootFolder>
     </Group>
   </SolutionFolder>
