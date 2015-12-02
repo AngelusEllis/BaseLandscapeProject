@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="BASELA~1" Version="2.3.2.3" Type="CocosStudio" />
+  <PropertyGroup Name="BaseLandscapeProject" Version="2.3.2.3" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -18,6 +18,8 @@
         <PlistParticleFile Name="particle_texture (1).plist" />
         <Image Name="farback.jpg" />
         <Image Name="background.jpg" />
+        <Image Name="Boss.png" />
+        <Image Name="LargeAstroid.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
