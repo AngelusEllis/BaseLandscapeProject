@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="BASELA~1" Version="2.3.2.3" Type="CocosStudio" />
+  <PropertyGroup Name="BaseLandscapeProject" Version="2.3.2.3" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -12,6 +12,8 @@
         <Image Name="HostileShip1.png" />
         <Image Name="HostileShip2.png" />
         <Image Name="menu-background.png" />
+        <Image Name="Boss.png" />
+        <Image Name="LargeAstroid.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
