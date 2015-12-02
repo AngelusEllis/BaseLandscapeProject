@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "cocostudio/CocoStudio.h"
+#include "HelloWorldScene.h"
 
 
 USING_NS_CC;
@@ -38,6 +39,7 @@ bool game::init()
 	upButtonTouched = false;
 	downButtonTouched = false;
 	fireButtonTouched = false;
+	menuButtonTouched = false;
 	firetimer = 0;
 	scoreValue = 0;
 	healthValue = 100;
@@ -57,7 +59,10 @@ bool game::init()
 	health = (ui::Text*)rootNode->getChildByName("Health");
 	score = (ui::Text*)rootNode->getChildByName("Score");
 	healthBar = (ui::LoadingBar*)rootNode->getChildByName("HealthBar");
-
+	gameOver = (Sprite*)rootNode->getChildByName("gameOverbg");
+	gameOverText = (ui::Text*)rootNode->getChildByName("gameOverText");
+	gameOverButton = (ui::Button*)rootNode->getChildByName("gameOverButton");
+	
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
 	buttonUp->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -101,6 +106,15 @@ bool game::init()
 		}
 	});
 	
+	gameOverButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			auto scene = HelloWorld::createScene();
+			Director::getInstance()->replaceScene(scene);
+		}
+	});
+
 
 	this->scheduleUpdate();
     return true;
@@ -114,10 +128,14 @@ void game::update(float delta)
 		healthValue = 0;
 		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
 		healthBar->setPercent(healthValue);
+		
+		gameOverText->setString(StringUtils::format("%s %d", "You Scored ", scoreValue));
+		gameOver->setPosition(Vec2(480, 320));
+		gameOverText->setPosition(Vec2(480, 340));
+		gameOverButton->setPosition(Vec2(480, 230));
 	}
 	else
 	{
-
 		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
 		healthBar->setPercent(healthValue);
 		healthValue--;

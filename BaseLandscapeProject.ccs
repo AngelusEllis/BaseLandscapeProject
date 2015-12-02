@@ -18,6 +18,7 @@
         <PlistParticleFile Name="particle_texture (1).plist" />
         <Image Name="farback.jpg" />
         <Image Name="background.jpg" />
+        <Image Name="gameOver.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -1,8 +1,8 @@
-﻿Build started 02/12/2015 13:11:03.
+﻿Build started 02/12/2015 14:57:47.
      1>Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" on node 2 (Build target(s)).
      1>PreLinkEvent:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.8\prebuilt\win32\*.*" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
+         xcopy /Y /Q "\cocos2d-x-3.8\prebuilt\win32\*.*" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
          
          :VCEnd
          60 File(s) copied
@@ -13,9 +13,12 @@
          xcopy "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\..\Resources" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" /D /E /I /F /Y
                
          :VCEnd
-         0 File(s) copied
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\Credits.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\Credits.csb
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\Game.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\Game.csb
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\MainScene.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\MainScene.csb
+         3 File(s) copied
      1>Done Building Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.48
+Time Elapsed 00:00:01.22

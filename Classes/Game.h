@@ -28,12 +28,16 @@ public:
 private:
 	cocos2d::Sprite* bg;
 	cocos2d::Sprite* ship;
+	cocos2d::Sprite* gameOver;
+	cocos2d::ui::Text* gameOverText;
 	cocos2d::ui::Text* health;
 	cocos2d::ui::Text* score;
 	cocos2d::ui::LoadingBar* healthBar;
+	cocos2d::ui::Button* gameOverButton;
 	bool upButtonTouched;
 	bool downButtonTouched;
 	bool fireButtonTouched;
+	bool menuButtonTouched;
 	float firetimer;
 	bullet *shot[50];
 	int scoreValue;
