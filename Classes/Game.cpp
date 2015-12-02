@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
+
 
 USING_NS_CC;
 
@@ -39,6 +39,8 @@ bool game::init()
 	downButtonTouched = false;
 	fireButtonTouched = false;
 	firetimer = 0;
+	scoreValue = 0;
+	healthValue = 100;
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -52,6 +54,9 @@ bool game::init()
 
 	bg = (Sprite*)rootNode->getChildByName("bg");
 	ship = (Sprite*)rootNode->getChildByName("PlayerShip");
+	health = (ui::Text*)rootNode->getChildByName("Health");
+	score = (ui::Text*)rootNode->getChildByName("Score");
+	healthBar = (ui::LoadingBar*)rootNode->getChildByName("HealthBar");
 
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
@@ -103,58 +108,85 @@ bool game::init()
 
 void game::update(float delta)
 {
-	auto moveBy = MoveBy::create(0, Vec2(-3 * delta, 0)); 
-	bg->runAction(moveBy);
 
-	Vec2 currentPos = ship->getPosition();
-	if (upButtonTouched == true && currentPos.y < 600)
+	if (healthValue <= 0)
 	{
-		auto moveBy = MoveBy::create(0, Vec2(0, 150 * delta)); 
-		ship->runAction(moveBy);
+		healthValue = 0;
+		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
+		healthBar->setPercent(healthValue);
 	}
-	if (downButtonTouched == true && currentPos.y > 40)
+	else
 	{
-		auto moveBy = MoveBy::create(0, Vec2(0, -150 * delta)); 
-		ship->runAction(moveBy);
-	}
 
-	if (fireButtonTouched == true && firetimer == 0)
-	{
+		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
+		healthBar->setPercent(healthValue);
+		healthValue--;
+		score->setString(StringUtils::format("%s %d", "Score: ", scoreValue));
+
+		if (healthValue < 50)
+		{
+			healthBar->setColor(ccc3(255, 255, 0));
+		}
+		if (healthValue < 25)
+		{
+			healthBar->setColor(ccc3(255, 0, 0));
+		}
+
+
+
+
+		auto moveBy = MoveBy::create(0, Vec2(-3 * delta, 0));
+		bg->runAction(moveBy);
+
+		Vec2 currentPos = ship->getPosition();
+		if (upButtonTouched == true && currentPos.y < 600)
+		{
+			auto moveBy = MoveBy::create(0, Vec2(0, 150 * delta));
+			ship->runAction(moveBy);
+		}
+		if (downButtonTouched == true && currentPos.y > 40)
+		{
+			auto moveBy = MoveBy::create(0, Vec2(0, -150 * delta));
+			ship->runAction(moveBy);
+		}
+
+		if (fireButtonTouched == true && firetimer == 0)
+		{
+			for (int i = 0; i < 50; i++)
+			{
+				if (shot[i]->fired == false)
+				{
+					shot[i]->image->setPosition(Vec2(currentPos.x + 75, currentPos.y));
+					shot[i]->fired = true;
+					firetimer = 1;
+					break;
+				}
+			}
+		}
+
+		if (firetimer > 0)
+		{
+			firetimer += delta;
+			if (firetimer > 1.3)
+			{
+				firetimer = 0;
+			}
+		}
+
 		for (int i = 0; i < 50; i++)
 		{
-			if (shot[i]->fired == false)
+			if (shot[i]->fired)
 			{
-				shot[i]->image->setPosition(Vec2(currentPos.x+75, currentPos.y));
-				shot[i]->fired = true;
-				firetimer = 1;
-				break;
+				auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
+				shot[i]->image->runAction(moveBy);
+				Vec2 shotPos = shot[i]->image->getPosition();
+				if (shotPos.x > 970)
+				{
+					shot[i]->image->setPosition(Vec2(-10, -10));
+					shot[i]->fired = false;
+				}
 			}
 		}
 	}
-
-	if (firetimer > 0)
-	{
-		firetimer += delta;
-		if (firetimer > 1.3)
-		{
-			firetimer = 0;
-		}
-	}
-
-	for (int i = 0; i < 50; i++)
-	{
-		if (shot[i]->fired)
-		{
-			auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
-			shot[i]->image->runAction(moveBy);
-			Vec2 shotPos = shot[i]->image->getPosition();
-			if (shotPos.x > 970)
-			{
-				shot[i]->image->setPosition(Vec2(-10, -10));
-				shot[i]->fired = false;
-			}
-		}
-	}
-
 	
 }

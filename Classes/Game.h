@@ -2,6 +2,7 @@
 #define __Game_SCENE_H__
 
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
 
 struct bullet
 {
@@ -27,11 +28,16 @@ public:
 private:
 	cocos2d::Sprite* bg;
 	cocos2d::Sprite* ship;
+	cocos2d::ui::Text* health;
+	cocos2d::ui::Text* score;
+	cocos2d::ui::LoadingBar* healthBar;
 	bool upButtonTouched;
 	bool downButtonTouched;
 	bool fireButtonTouched;
 	float firetimer;
 	bullet *shot[50];
+	int scoreValue;
+	int healthValue;
 };
 
 #endif 
