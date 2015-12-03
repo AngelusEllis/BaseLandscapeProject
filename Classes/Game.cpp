@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "cocostudio/CocoStudio.h"
 #include "HelloWorldScene.h"
+#include "Enemy.h"
 
 
 USING_NS_CC;
@@ -43,6 +44,8 @@ bool game::init()
 	firetimer = 0;
 	scoreValue = 0;
 	healthValue = 100;
+	enemytimer = 0;
+	enemycount = 0;
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -52,6 +55,14 @@ bool game::init()
 		addChild(shot[i]->image);
 	}
 
+	for (int i = 0; i < 50; i++)
+	{
+		Enemylist[i] = new Enemy();
+		Sprite* temptsprite = Enemylist[i]->init(0);
+		addChild(temptsprite);
+	}
+
+	Enemylist[0]->spawn();
 	
 
 	bg = (Sprite*)rootNode->getChildByName("bg");
@@ -138,7 +149,7 @@ void game::update(float delta)
 	{
 		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
 		healthBar->setPercent(healthValue);
-		healthValue--;
+		//healthValue--;
 		score->setString(StringUtils::format("%s %d", "Score: ", scoreValue));
 
 		if (healthValue < 50)
@@ -150,8 +161,25 @@ void game::update(float delta)
 			healthBar->setColor(ccc3(255, 0, 0));
 		}
 
+		for (int i = 0; i < 50; i++)
+		{
+			if (Enemylist[i]->isspawned())
+			{
+				Enemylist[i]->move(delta);
+			}
+		}
 
+		if (enemytimer > 2)
+		{
+			enemytimer = 0;
+			if (!Enemylist[enemycount]->isspawned())
+			{
+				Enemylist[enemycount]->spawn();
+				enemycount++;
+			}
+		}
 
+		enemytimer += delta;
 
 		auto moveBy = MoveBy::create(0, Vec2(-3 * delta, 0));
 		bg->runAction(moveBy);

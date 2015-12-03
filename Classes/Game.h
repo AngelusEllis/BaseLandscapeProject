@@ -3,12 +3,12 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#include "Enemy.h"
 
 struct bullet
 {
 	cocos2d::Sprite* image;
 	bool fired;
-
 };
 
 class game : public cocos2d::Layer
@@ -42,6 +42,9 @@ private:
 	bullet *shot[50];
 	int scoreValue;
 	int healthValue;
+	Enemy *Enemylist[50];
+	float enemytimer;
+	int enemycount;
 };
 
 #endif 
