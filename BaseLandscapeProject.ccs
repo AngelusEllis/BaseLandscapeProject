@@ -19,6 +19,8 @@
         <Image Name="farback.jpg" />
         <Image Name="background.jpg" />
         <Image Name="gameOver.png" />
+        <Image Name="LargeAstroid.png" />
+        <Image Name="Boss.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
