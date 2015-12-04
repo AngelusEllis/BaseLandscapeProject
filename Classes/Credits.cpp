@@ -1,6 +1,7 @@
 #include "Credits.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -34,6 +35,17 @@ bool Credits::init()
     auto rootNode = CSLoader::createNode("Credits.csb");
 
     addChild(rootNode);
+
+	auto backButton = rootNode->getChildByName<cocos2d::ui::Button*>("Back_button");
+
+	backButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			auto scene = HelloWorld::createScene();
+			Director::getInstance()->replaceScene(scene);
+		}
+	});
 
     return true;
 }
