@@ -1,11 +1,20 @@
-﻿Build started 03/12/2015 15:45:38.
+﻿Build started 04/12/2015 11:10:28.
      1>Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"\cocos2d-x-3.8\cocos\audio\include" /I"\cocos2d-x-3.8\external" /I"\cocos2d-x-3.8\external\chipmunk\include\chipmunk" /I"\cocos2d-x-3.8\extensions" /I..\Classes /I.. /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\editor-support" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform\desktop" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\\" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt Enemy.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"\cocos2d-x-3.8\cocos\audio\include" /I"\cocos2d-x-3.8\external" /I"\cocos2d-x-3.8\external\chipmunk\include\chipmunk" /I"\cocos2d-x-3.8\extensions" /I..\Classes /I.. /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\editor-support" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform\desktop" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\\" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\Game.cpp Enemy.cpp Player.cpp main.cpp
+         Game.cpp
          Enemy.cpp
+         Player.cpp
+         main.cpp
      1>c:\student temporary folder\baselandscapeproject\proj.win32\enemy.cpp(22): warning C4305: '=' : truncation from 'double' to 'float'
      1>c:\student temporary folder\baselandscapeproject\proj.win32\enemy.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(155): warning C4996: 'cocos2d::ccc3': was declared deprecated
+                 c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(417) : see declaration of 'cocos2d::ccc3'
+     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(159): warning C4996: 'cocos2d::ccc3': was declared deprecated
+                 c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(417) : see declaration of 'cocos2d::ccc3'
      1>c:\student temporary folder\baselandscapeproject\proj.win32\enemy.cpp(32): warning C4715: 'Enemy::init' : not all control paths return a value
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\bin\rc.exe /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug.win32\game.res" game.rc 
        PreLinkEvent:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
          xcopy /Y /Q "\cocos2d-x-3.8\prebuilt\win32\*.*" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
@@ -21,15 +30,21 @@
          Debug.win32\Enemy.obj
          Debug.win32\main.obj
          Debug.win32\Player.obj
+         LINK : C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exe not found or not built by the last incremental link; performing full link
+     1>AppDelegate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.lib and object C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exp
          BaseLandscapeProject.vcxproj -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exe
        CustomBuildStep:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
          xcopy "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\..\Resources" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" /D /E /I /F /Y
                
          :VCEnd
-         0 File(s) copied
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\Credits.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\Credits.csb
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\Game.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\Game.csb
+         C:\Student Temporary Folder\BaseLandscapeProject\Resources\res\MainScene.csb -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\res\MainScene.csb
+         3 File(s) copied
      1>Done Building Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.28
+Time Elapsed 00:00:15.67

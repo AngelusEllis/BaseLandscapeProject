@@ -61,8 +61,6 @@ bool game::init()
 		Sprite* temptsprite = Enemylist[i]->init(0);
 		addChild(temptsprite);
 	}
-
-	Enemylist[0]->spawn();
 	
 
 	bg = (Sprite*)rootNode->getChildByName("bg");
@@ -171,10 +169,15 @@ void game::update(float delta)
 
 		if (enemytimer > 2)
 		{
-			enemytimer = 0;
+			
 			if (!Enemylist[enemycount]->isspawned())
 			{
+				enemytimer = 0;
 				Enemylist[enemycount]->spawn();
+				enemycount++;
+			}
+			else
+			{
 				enemycount++;
 			}
 		}
