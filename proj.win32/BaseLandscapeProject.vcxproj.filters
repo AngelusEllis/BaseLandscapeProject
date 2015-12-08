@@ -30,7 +30,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="..\Classes\Collision.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,13 +50,13 @@
     <ClInclude Include="..\Classes\Game.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="Struts.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Collision.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
