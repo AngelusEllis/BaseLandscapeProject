@@ -24,5 +24,8 @@ private:
 	cocos2d::Sprite* image;
 	int type;
 	float scale;
+	float rotation;
+	int ticks;
+	bool Up;
 };
 

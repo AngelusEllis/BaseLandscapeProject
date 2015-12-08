@@ -42,7 +42,7 @@ private:
 	bullet *shot[50];
 	int scoreValue;
 	int healthValue;
-	Enemy *Enemylist[50];
+	Enemy *Enemylist[100];
 	float enemytimer;
 	int enemycount;
 };

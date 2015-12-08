@@ -32,6 +32,8 @@ bool game::init()
     {
         return false;
     }
+
+	srand(time(NULL));
     
     auto rootNode = CSLoader::createNode("Game.csb");
 
@@ -55,11 +57,25 @@ bool game::init()
 		addChild(shot[i]->image);
 	}
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		Enemylist[i] = new Enemy();
-		Sprite* temptsprite = Enemylist[i]->init(0);
-		addChild(temptsprite);
+		if (i < 40)
+		{
+			Sprite* temptsprite = Enemylist[i]->init(0);
+			addChild(temptsprite);
+		}
+		else if (i < 70)
+		{
+			Sprite* temptsprite = Enemylist[i]->init(1);
+			addChild(temptsprite);
+		}
+		else
+		{
+			Sprite* temptsprite = Enemylist[i]->init(2);
+			addChild(temptsprite);
+		}
+		
 	}
 	
 
@@ -71,6 +87,8 @@ bool game::init()
 	gameOver = (Sprite*)rootNode->getChildByName("gameOverbg");
 	gameOverText = (ui::Text*)rootNode->getChildByName("gameOverText");
 	gameOverButton = (ui::Button*)rootNode->getChildByName("gameOverButton");
+
+	
 	
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
@@ -123,7 +141,8 @@ bool game::init()
 			Director::getInstance()->replaceScene(scene);
 		}
 	});
-
+	fireButton->setZOrder(1000);
+	buttonDown->setZOrder(800);
 
 	this->scheduleUpdate();
     return true;
@@ -150,35 +169,54 @@ void game::update(float delta)
 		//healthValue--;
 		score->setString(StringUtils::format("%s %d", "Score: ", scoreValue));
 
-		if (healthValue < 50)
+		if (healthValue < 50 && healthValue >= 25)
 		{
 			healthBar->setColor(ccc3(255, 255, 0));
 		}
-		if (healthValue < 25)
+		else if (healthValue < 25)
 		{
 			healthBar->setColor(ccc3(255, 0, 0));
 		}
 
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			if (Enemylist[i]->isspawned())
 			{
 				Enemylist[i]->move(delta);
 			}
 		}
-
-		if (enemytimer > 2)
+		if (enemycount < 70)
 		{
-			
-			if (!Enemylist[enemycount]->isspawned())
+			if (enemytimer > 2)
 			{
-				enemytimer = 0;
-				Enemylist[enemycount]->spawn();
-				enemycount++;
+
+				if (!Enemylist[enemycount]->isspawned())
+				{
+					enemytimer = 0;
+					Enemylist[enemycount]->spawn();
+					enemycount++;
+				}
+				else
+				{
+					enemycount++;
+				}
 			}
-			else
+		}
+		else 
+		{
+			if (enemytimer > 3)
 			{
-				enemycount++;
+
+				if (!Enemylist[enemycount]->isspawned())
+				{
+					enemytimer = 0;
+					Enemylist[enemycount]->spawn();
+					enemycount++;
+				}
+				else
+				{
+					enemycount++;
+				}
 			}
 		}
 
