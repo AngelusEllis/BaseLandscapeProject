@@ -25,6 +25,8 @@ public:
 
 	void update(float) override;
 
+	bool collisions(Sprite*, Sprite*);
+
 private:
 	cocos2d::Sprite* bg;
 	cocos2d::Sprite* ship;
@@ -40,6 +42,7 @@ private:
 	bool menuButtonTouched;
 	float firetimer;
 	bullet *shot[50];
+	bullet *Eshot[50];
 	int scoreValue;
 	int healthValue;
 	Enemy *Enemylist[100];

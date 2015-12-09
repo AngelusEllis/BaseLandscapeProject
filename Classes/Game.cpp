@@ -49,12 +49,20 @@ bool game::init()
 	enemytimer = 0;
 	enemycount = 0;
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 50; i++) 
 	{
 		shot[i] = new bullet();
 		shot[i]->fired = false;
 		shot[i]->image = Sprite::create("shot.png");
 		addChild(shot[i]->image);
+	}
+
+	for (int i = 0; i < 50; i++)
+	{
+		Eshot[i] = new bullet();
+		Eshot[i]->fired = false;
+		Eshot[i]->image = Sprite::create("shot.png");
+		addChild(Eshot[i]->image);
 	}
 
 	for (int i = 0; i < 100; i++)
@@ -70,9 +78,14 @@ bool game::init()
 			Sprite* temptsprite = Enemylist[i]->init(1);
 			addChild(temptsprite);
 		}
-		else
+		else if (i < 99)
 		{
 			Sprite* temptsprite = Enemylist[i]->init(2);
+			addChild(temptsprite);
+		}
+		else
+		{
+			Sprite* temptsprite = Enemylist[i]->init(3);
 			addChild(temptsprite);
 		}
 		
@@ -141,8 +154,7 @@ bool game::init()
 			Director::getInstance()->replaceScene(scene);
 		}
 	});
-	fireButton->setZOrder(1000);
-	buttonDown->setZOrder(800);
+	
 
 	this->scheduleUpdate();
     return true;
@@ -182,7 +194,20 @@ void game::update(float delta)
 		{
 			if (Enemylist[i]->isspawned())
 			{
-				Enemylist[i]->move(delta);
+				if (Enemylist[i]->move(delta))
+				{
+					Vec2 pos = Enemylist[i]->getPos();
+					for (int i = 0; i < 50; i++)
+					{
+						if (Eshot[i]->fired == false)
+						{
+							Eshot[i]->image->setPosition(Vec2(pos.x - 40, pos.y));
+							Eshot[i]->fired = true;
+							firetimer = 0;
+							break;
+						}
+					}
+				}
 			}
 		}
 		if (enemycount < 70)
@@ -264,6 +289,13 @@ void game::update(float delta)
 		{
 			if (shot[i]->fired)
 			{
+				for (int j = 0; j < 100; j++)
+				{
+					if (collisions(shot[i]->image, Enemylist[j]->image))
+					{
+						Enemylist[j]->despawn();
+					}
+				}
 				auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
 				shot[i]->image->runAction(moveBy);
 				Vec2 shotPos = shot[i]->image->getPosition();
@@ -274,6 +306,32 @@ void game::update(float delta)
 				}
 			}
 		}
+
+		for (int i = 0; i < 50; i++)
+		{
+			if (Eshot[i]->fired)
+			{
+				auto moveBy = MoveBy::create(0, Vec2(-10, 0)); //needs updating to go by delta time
+				Eshot[i]->image->runAction(moveBy);
+				Vec2 EshotPos = Eshot[i]->image->getPosition();
+				if (EshotPos.x < -100)
+				{
+					Eshot[i]->image->setPosition(Vec2(-10, -10));
+					Eshot[i]->fired = false;
+				}
+			}
+		}
 	}
-	
+
+
+
+}
+
+bool game::collisions(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){
+	cocos2d::CCRect S1 = Sprite1->getBoundingBox();
+	cocos2d::CCRect S2 = Sprite2->getBoundingBox();
+	if (S2.intersectsRect(S1)){
+		return true;
+	}
+	return false;
 }

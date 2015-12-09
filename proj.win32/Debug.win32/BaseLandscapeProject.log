@@ -1,22 +1,12 @@
-﻿Build started 08/12/2015 14:44:08.
+﻿Build started 09/12/2015 15:17:37.
      1>Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" on node 2 (Build target(s)).
      1>PreLinkEvent:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
-         xcopy /Y /Q "\cocos2d-x-3.8\prebuilt\win32\*.*" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.8\prebuilt\win32\*.*" "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
          
          :VCEnd
          60 File(s) copied
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\\" /LIBPATH:"C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\\" opengl32.lib glew32.lib libzlib.lib libwebp.lib libiconv.lib freetype.lib winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
-         Debug.win32\AppDelegate.obj
-         Debug.win32\Collision.obj
-         Debug.win32\Credits.obj
-         Debug.win32\Game.obj
-         Debug.win32\HelloWorldScene.obj
-         Debug.win32\Enemy.obj
-         Debug.win32\main.obj
-     1>AppDelegate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-            Creating library C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.lib and object C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exp
          BaseLandscapeProject.vcxproj -> C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\BaseLandscapeProject.exe
        CustomBuildStep:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
@@ -28,4 +18,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.47
+Time Elapsed 00:00:00.48

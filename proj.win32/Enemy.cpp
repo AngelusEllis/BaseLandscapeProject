@@ -29,7 +29,6 @@ Sprite* Enemy::init(int enemyType)
 		rotation = 0;
 		image->setPosition(Vec2(-400, -400));
 		image->setScale(scale);
-		image->setZOrder(900);
 		return image;
 		break;
 		
@@ -59,7 +58,7 @@ Sprite* Enemy::init(int enemyType)
 		health = 3;
 		speed = 3;
 		scale = 0.15f;
-		shotTimer = 1;
+		shotTimer = 0.0f;
 		spawned = false;
 		image = Sprite::create("HostileShip2.png");
 		type = 2;
@@ -69,7 +68,22 @@ Sprite* Enemy::init(int enemyType)
 		ticks = 0;
 		return image;
 		break;
-	}
+
+	case 3:
+		health = 20;
+		speed = 3;
+		scale = 0.15f;
+		shotTimer = 0.0f;
+		spawned = false;
+		image = Sprite::create("Boss.png");
+		type = 3;
+		image->setPosition(Vec2(-400, -400));
+		image->setScale(scale);
+		//image->setRotation(-90.0f);
+		ticks = 0;
+		return image;
+		break;
+}
 }
 
 Enemy::~Enemy()
@@ -83,15 +97,20 @@ void Enemy::spawn()
 	if (type == 2)
 	{
 		randomx = (rand() % 200) + 40;
+		image->setPosition(Vec2(1100, randomx));
+	}
+	else if (type == 3)
+	{
+		image->setPosition(Vec2(940, 120));
 	}
 	else
 	{
 		randomx = (rand() % 560) + 40;
+		image->setPosition(Vec2(1100, randomx));
 	}
-	image->setPosition(Vec2(1100, randomx));
 }
 
-void Enemy::move(float delta)
+bool Enemy::move(float delta)
 {
 	if (type == 0)
 	{
@@ -104,6 +123,7 @@ void Enemy::move(float delta)
 		{
 			despawn();
 		}
+		return false;
 	}
 	else if (type == 1)
 	{
@@ -138,12 +158,10 @@ void Enemy::move(float delta)
 					image->runAction(moveBy);
 				}
 			}
-			
-			
 		}
-		
+		return false;
 	}
-	else
+	else if (type == 2)
 	{
 		ticks++;
 		float newYPos = 4 * sin(ticks * 0.5 * 3.14 / 80);
@@ -154,6 +172,32 @@ void Enemy::move(float delta)
 		{
 			despawn();
 		}
+		shotTimer += delta;
+		if (shotTimer > 3)
+		{
+			shotTimer = 0;
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		ticks++;
+		float newYPos = 4 * sin(ticks * 0.5 * 3.14 / 80);
+		auto moveBy = MoveBy::create(0, Vec2(0, newYPos));
+		image->runAction(moveBy);
+		Vec2 spritepos = image->getPosition();
+		if (spritepos.x < -300)
+		{
+			despawn();
+		}
+		shotTimer += delta;
+		if (shotTimer > 0.7)
+		{
+			shotTimer = 0;
+			return true;
+		}
+		return false;
 	}
 }
 
@@ -166,4 +210,10 @@ void Enemy::despawn()
 bool Enemy::isspawned()
 {
 	return spawned;
+}
+
+Vec2 Enemy::getPos()
+{
+	Vec2 spritepos = image->getPosition();
+	return spritepos;
 }

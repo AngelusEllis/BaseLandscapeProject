@@ -9,23 +9,26 @@ public:
 	~Enemy();
 	Sprite* init(int);
 	void spawn();
-	void move(float);
+	bool move(float);
 	void despawn();
 	void setHealth(int);
 	int getHealth();
 	void setspeed(float);
 	bool isspawned();
+	Vec2 getPos();
 
 private:
 	int health;
-	int shotTimer;
+	float shotTimer;
 	float speed;
 	bool spawned;
-	cocos2d::Sprite* image;
+
 	int type;
 	float scale;
 	float rotation;
 	int ticks;
 	bool Up;
+public:
+	cocos2d::Sprite* image;
 };
 
