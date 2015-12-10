@@ -217,3 +217,13 @@ Vec2 Enemy::getPos()
 	Vec2 spritepos = image->getPosition();
 	return spritepos;
 }
+
+void Enemy::setHealth(int hp)
+{
+	health = hp;
+}
+
+int Enemy::getHealth()
+{
+	return health;
+}

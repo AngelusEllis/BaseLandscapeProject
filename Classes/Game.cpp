@@ -43,6 +43,8 @@ bool game::init()
 	downButtonTouched = false;
 	fireButtonTouched = false;
 	menuButtonTouched = false;
+	win = false;
+	paused = false;
 	firetimer = 0;
 	scoreValue = 0;
 	healthValue = 100;
@@ -100,8 +102,7 @@ bool game::init()
 	gameOver = (Sprite*)rootNode->getChildByName("gameOverbg");
 	gameOverText = (ui::Text*)rootNode->getChildByName("gameOverText");
 	gameOverButton = (ui::Button*)rootNode->getChildByName("gameOverButton");
-
-	
+	pauseButton = (ui::Button*)rootNode->getChildByName("buttonPause");
 	
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
@@ -154,6 +155,24 @@ bool game::init()
 			Director::getInstance()->replaceScene(scene);
 		}
 	});
+
+	pauseButton->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			auto scene = HelloWorld::createScene();
+			if (paused)
+			{
+				paused = false;
+				gameOverText->setPosition(Vec2(2000, 2000));
+
+			}
+			else
+			{
+				paused = true;
+			}
+		}
+	});
 	
 
 	this->scheduleUpdate();
@@ -162,13 +181,24 @@ bool game::init()
 
 void game::update(float delta)
 {
-
-	if (healthValue <= 0)
+	if (paused)
+	{
+		gameOverText->setString(StringUtils::format("%s", "Paused"));
+		gameOverText->setPosition(Vec2(480, 340));
+	}
+	else if (win)
+	{
+		gameOverText->setString(StringUtils::format("%s %d", "You Win. Final Score: ", scoreValue));
+		gameOver->setPosition(Vec2(480, 320));
+		gameOverText->setPosition(Vec2(480, 340));
+		gameOverButton->setPosition(Vec2(480, 230));
+	}
+	else if (healthValue <= 0)
 	{
 		healthValue = 0;
 		health->setString(StringUtils::format("%s %d", "Health: ", healthValue));
 		healthBar->setPercent(healthValue);
-		
+
 		gameOverText->setString(StringUtils::format("%s %d", "You Scored ", scoreValue));
 		gameOver->setPosition(Vec2(480, 320));
 		gameOverText->setPosition(Vec2(480, 340));
@@ -195,10 +225,21 @@ void game::update(float delta)
 		{
 			if (Enemylist[i]->isspawned())
 			{
-				if (collisionsSphereSphere(Enemylist[i]->image, ship))
+				if (i < 40)
 				{
-					healthValue -= 20;
-					Enemylist[i]->despawn();
+					if (collisionsSphereSphere(Enemylist[i]->image, ship))
+					{
+						healthValue -= 20;
+						Enemylist[i]->despawn();
+					}
+				}
+				else
+				{
+					if (collisionsBoxBox(Enemylist[i]->image, ship))
+					{
+						healthValue -= 20;
+						Enemylist[i]->despawn();
+					}
 				}
 				if (Enemylist[i]->move(delta))
 				{
@@ -235,7 +276,7 @@ void game::update(float delta)
 				}
 			}
 		}
-		else 
+		else if (enemycount < 99)
 		{
 			if (enemytimer > 3)
 			{
@@ -249,6 +290,17 @@ void game::update(float delta)
 				else
 				{
 					enemycount++;
+				}
+			}
+		}
+		else
+		{
+			if (enemytimer > 10)
+			{
+
+				if (!Enemylist[enemycount]->isspawned())
+				{
+					Enemylist[enemycount]->spawn();
 				}
 			}
 		}
@@ -299,15 +351,61 @@ void game::update(float delta)
 			{
 				for (int j = 0; j < 100; j++)
 				{
-					if (collisionsSphereSphere(shot[i]->image, Enemylist[j]->image))
+					if (Enemylist[j]->isspawned())
 					{
-						Enemylist[j]->despawn();
-						shot[i]->fired = false;
-						shot[i]->image->setPosition(Vec2(-10, -10));
-						scoreValue += 10;
+						if (j < 40)
+						{
+							if (collisionsSphereSphere(shot[i]->image, Enemylist[j]->image))
+							{
+								Enemylist[j]->despawn();
+								shot[i]->fired = false;
+								shot[i]->image->setPosition(Vec2(-10, -10));
+								scoreValue += 10;
+							}
+						}
+						else
+						{
+							if (j < 70)
+							{
+								if (collisionsBoxBox(shot[i]->image, Enemylist[j]->image))
+								{
+									Enemylist[j]->despawn();
+									shot[i]->fired = false;
+									shot[i]->image->setPosition(Vec2(-10, -10));
+									scoreValue += 15;
+								}
+							}
+							else
+							{
+								if (collisionsBoxBox(shot[i]->image, Enemylist[j]->image))
+								{
+									if (Enemylist[j]->getHealth() > 1)
+									{
+										Enemylist[j]->setHealth(Enemylist[j]->getHealth() - 1);
+										shot[i]->fired = false;
+										shot[i]->image->setPosition(Vec2(-10, -10));
+									}
+									else
+									{
+										Enemylist[j]->despawn();
+										shot[i]->fired = false;
+										shot[i]->image->setPosition(Vec2(-10, -10));
+										if (j < 99)
+										{
+											scoreValue += 25;
+										}
+										else
+										{
+											scoreValue += 200;
+											win = true;
+										}
+									}
+								}
+							}
+						}
 					}
 				}
-				auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
+				auto moveBy = MoveBy::create(0, Vec2(700 * delta, 0)); //needs updating to go by delta time
 				shot[i]->image->runAction(moveBy);
 				Vec2 shotPos = shot[i]->image->getPosition();
 				if (shotPos.x > 970)
@@ -328,7 +426,7 @@ void game::update(float delta)
 					Eshot[i]->image->setPosition(Vec2(-10, -10));
 					Eshot[i]->fired = false;
 				}
-				auto moveBy = MoveBy::create(0, Vec2(-10, 0)); //needs updating to go by delta time
+				auto moveBy = MoveBy::create(0, Vec2(-700 * delta, 0)); //needs updating to go by delta time
 				Eshot[i]->image->runAction(moveBy);
 				Vec2 EshotPos = Eshot[i]->image->getPosition();
 				if (EshotPos.x < -100)
@@ -339,7 +437,6 @@ void game::update(float delta)
 			}
 		}
 	}
-
 
 
 }

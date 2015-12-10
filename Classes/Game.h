@@ -37,10 +37,13 @@ private:
 	cocos2d::ui::Text* score;
 	cocos2d::ui::LoadingBar* healthBar;
 	cocos2d::ui::Button* gameOverButton;
+	cocos2d::ui::Button* pauseButton;
 	bool upButtonTouched;
 	bool downButtonTouched;
 	bool fireButtonTouched;
 	bool menuButtonTouched;
+	bool paused;
+	bool win;
 	float firetimer;
 	bullet *shot[50];
 	bullet *Eshot[50];

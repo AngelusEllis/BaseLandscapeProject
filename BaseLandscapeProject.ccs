@@ -21,6 +21,8 @@
         <Image Name="gameOver.png" />
         <Image Name="LargeAstroid.png" />
         <Image Name="Boss.png" />
+        <Image Name="pause.png" />
+        <Image Name="play.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
