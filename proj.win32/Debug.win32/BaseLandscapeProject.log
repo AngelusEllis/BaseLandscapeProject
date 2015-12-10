@@ -1,4 +1,4 @@
-﻿Build started 10/12/2015 12:45:45.
+﻿Build started 10/12/2015 12:57:21.
      1>Project "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\BaseLandscapeProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"\cocos2d-x-3.8\cocos\audio\include" /I"\cocos2d-x-3.8\external" /I"\cocos2d-x-3.8\external\chipmunk\include\chipmunk" /I"\cocos2d-x-3.8\extensions" /I..\Classes /I.. /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\editor-support" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\cocos\platform\desktop" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external\freetype2\include\win32\\" /I"C:\cocos2d-x-3.8\cocos\2d\..\..\external" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\Game.cpp
@@ -7,9 +7,11 @@
                  c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(417) : see declaration of 'cocos2d::ccc3'
      1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(190): warning C4996: 'cocos2d::ccc3': was declared deprecated
                  c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(417) : see declaration of 'cocos2d::ccc3'
-     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(349): warning C4996: 'cocos2d::ccpDistance': was declared deprecated
+     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(353): warning C4996: 'cocos2d::ccpDistance': was declared deprecated
                  c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(214) : see declaration of 'cocos2d::ccpDistance'
-     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(367): warning C4996: 'cocos2d::CCRect': was declared deprecated
+     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(358): warning C4996: 'cocos2d::ccpDistance': was declared deprecated
+                 c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(214) : see declaration of 'cocos2d::ccpDistance'
+     1>c:\student temporary folder\baselandscapeproject\classes\game.cpp(380): warning C4996: 'cocos2d::CCRect': was declared deprecated
                  c:\cocos2d-x-3.8\cocos\deprecated\ccdeprecated.h(777) : see declaration of 'cocos2d::CCRect'
        PreLinkEvent:
          if not exist "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\" mkdir "C:\Student Temporary Folder\BaseLandscapeProject\proj.win32\Debug.win32\"
@@ -37,4 +39,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.34
+Time Elapsed 00:00:05.71

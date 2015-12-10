@@ -345,12 +345,25 @@ void game::update(float delta)
 }
 
 
-bool game::collisionsSphereSphere(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){
-	float diff = ccpDistance(Sprite1->getPosition(), Sprite2->getPosition());
+bool game::collisionsSphereSphere(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2)
+{
+	float diff;
+	if (Sprite2->getTag() == 14)
+	{
+		diff = ccpDistance(Sprite1->getPosition(), Vec2((Sprite2->getPosition().x + 40), Sprite2->getPosition().y));
+
+	}
+	else
+	{
+		diff = ccpDistance(Sprite1->getPosition(), Sprite2->getPosition());
+
+	}
 	if (diff < (Sprite1->getBoundingBox().size.height / 2) + ((Sprite2->getBoundingBox().size.height / 2) - (150 * Sprite2->getScale())))
 	{
 		return true;
 	}
+
+	
 	return false;
 }
 
