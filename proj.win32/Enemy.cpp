@@ -22,7 +22,7 @@ Sprite* Enemy::init(int enemyType)
 		health = 1;
 		speed = 5;
 		scale = (float)((rand() % 30) + 5) / 100.0f;
-		shotTimer = -1000;
+		shotTimer = -5000;
 		spawned = false;
 		image = Sprite::create("SmallAstroid.png");
 		type = 0;
@@ -36,7 +36,7 @@ Sprite* Enemy::init(int enemyType)
 		health = 1;
 		speed = 5;
 		scale = 0.15f;
-		shotTimer = -1000;
+		shotTimer = -5000;
 		spawned = false;
 		image = Sprite::create("HostileShip1.png");
 		type = 1;

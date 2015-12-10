@@ -25,7 +25,8 @@ public:
 
 	void update(float) override;
 
-	bool collisions(Sprite*, Sprite*);
+	bool collisionsSphereSphere(Sprite*, Sprite*);
+	bool collisionsBoxBox(Sprite*, Sprite*);
 
 private:
 	cocos2d::Sprite* bg;

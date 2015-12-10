@@ -190,10 +190,16 @@ void game::update(float delta)
 			healthBar->setColor(ccc3(255, 0, 0));
 		}
 
+		//enemy move and fire
 		for (int i = 0; i < 100; i++)
 		{
 			if (Enemylist[i]->isspawned())
 			{
+				if (collisionsSphereSphere(Enemylist[i]->image, ship))
+				{
+					healthValue -= 20;
+					Enemylist[i]->despawn();
+				}
 				if (Enemylist[i]->move(delta))
 				{
 					Vec2 pos = Enemylist[i]->getPos();
@@ -210,6 +216,8 @@ void game::update(float delta)
 				}
 			}
 		}
+
+		//enemy spawner
 		if (enemycount < 70)
 		{
 			if (enemytimer > 2)
@@ -291,9 +299,12 @@ void game::update(float delta)
 			{
 				for (int j = 0; j < 100; j++)
 				{
-					if (collisions(shot[i]->image, Enemylist[j]->image))
+					if (collisionsSphereSphere(shot[i]->image, Enemylist[j]->image))
 					{
 						Enemylist[j]->despawn();
+						shot[i]->fired = false;
+						shot[i]->image->setPosition(Vec2(-10, -10));
+						scoreValue += 10;
 					}
 				}
 				auto moveBy = MoveBy::create(0, Vec2(10, 0)); //needs updating to go by delta time
@@ -311,6 +322,12 @@ void game::update(float delta)
 		{
 			if (Eshot[i]->fired)
 			{
+				if (collisionsBoxBox(Eshot[i]->image, ship))
+				{
+					healthValue -= 20;
+					Eshot[i]->image->setPosition(Vec2(-10, -10));
+					Eshot[i]->fired = false;
+				}
 				auto moveBy = MoveBy::create(0, Vec2(-10, 0)); //needs updating to go by delta time
 				Eshot[i]->image->runAction(moveBy);
 				Vec2 EshotPos = Eshot[i]->image->getPosition();
@@ -327,7 +344,20 @@ void game::update(float delta)
 
 }
 
-bool game::collisions(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){
+
+bool game::collisionsSphereSphere(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){
+	float diff = ccpDistance(Sprite1->getPosition(), Sprite2->getPosition());
+	if (diff < (Sprite1->getBoundingBox().size.height / 2) + ((Sprite2->getBoundingBox().size.height / 2) - (150 * Sprite2->getScale())))
+	{
+		return true;
+	}
+	return false;
+}
+
+
+
+
+bool game::collisionsBoxBox(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){
 	cocos2d::CCRect S1 = Sprite1->getBoundingBox();
 	cocos2d::CCRect S2 = Sprite2->getBoundingBox();
 	if (S2.intersectsRect(S1)){
