@@ -107,6 +107,8 @@ bool game::init()
 
 	smokeParticle = CCParticleSystemQuad::create("boom.plist");
 	this->addChild(smokeParticle);
+	smokeParticle->setPosition(-500, -500);
+
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
 	buttonUp->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -373,7 +375,7 @@ void game::update(float delta)
 								
 								CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 								smokeParticle->setPosition(Enemylist[j]->getPos());
-								smokeParticle->draw();
+								smokeParticle->resetSystem();
 								shot[i]->fired = false;
 								shot[i]->image->setPosition(Vec2(-10, -10));
 								scoreValue += 10;
@@ -386,11 +388,14 @@ void game::update(float delta)
 							{
 								if (collisionsBoxBox(shot[i]->image, Enemylist[j]->image))
 								{
-									Enemylist[j]->despawn();
+									
 									CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
+									smokeParticle->setPosition(Enemylist[j]->getPos());
+									smokeParticle->resetSystem();
 									shot[i]->fired = false;
 									shot[i]->image->setPosition(Vec2(-10, -10));
 									scoreValue += 15;
+									Enemylist[j]->despawn();
 								}
 							}
 							else
@@ -405,10 +410,12 @@ void game::update(float delta)
 									}
 									else
 									{
-										Enemylist[j]->despawn();
+										smokeParticle->setPosition(Enemylist[j]->getPos());
+										smokeParticle->resetSystem();
 										CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 										shot[i]->fired = false;
 										shot[i]->image->setPosition(Vec2(-10, -10));
+										Enemylist[j]->despawn();
 										if (j < 99)
 										{
 											scoreValue += 25;
