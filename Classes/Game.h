@@ -38,6 +38,7 @@ private:
 	cocos2d::ui::LoadingBar* healthBar;
 	cocos2d::ui::Button* gameOverButton;
 	cocos2d::ui::Button* pauseButton;
+	CCParticleSystemQuad* smokeParticle;
 	bool upButtonTouched;
 	bool downButtonTouched;
 	bool fireButtonTouched;

@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "HelloWorldScene.h"
 #include "Enemy.h"
+#include <SimpleAudioEngine.h>
 
 
 USING_NS_CC;
@@ -103,7 +104,9 @@ bool game::init()
 	gameOverText = (ui::Text*)rootNode->getChildByName("gameOverText");
 	gameOverButton = (ui::Button*)rootNode->getChildByName("gameOverButton");
 	pauseButton = (ui::Button*)rootNode->getChildByName("buttonPause");
-	
+
+	smokeParticle = CCParticleSystemQuad::create("boom.plist");
+	this->addChild(smokeParticle);
 
 	auto buttonUp = rootNode->getChildByName<cocos2d::ui::Button*>("up_button");
 	buttonUp->addTouchEventListener([&](Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -175,6 +178,12 @@ bool game::init()
 	});
 	
 
+	//background music
+	auto bgaudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	bgaudio->SimpleAudioEngine::playBackgroundMusic("mars.mp3", true);
+
+
+
 	this->scheduleUpdate();
     return true;
 }
@@ -231,6 +240,7 @@ void game::update(float delta)
 					{
 						healthValue -= 20;
 						Enemylist[i]->despawn();
+						CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 					}
 				}
 				else
@@ -239,6 +249,7 @@ void game::update(float delta)
 					{
 						healthValue -= 20;
 						Enemylist[i]->despawn();
+						CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 					}
 				}
 				if (Enemylist[i]->move(delta))
@@ -248,6 +259,7 @@ void game::update(float delta)
 					{
 						if (Eshot[i]->fired == false)
 						{
+							CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("pew.mp3", false);
 							Eshot[i]->image->setPosition(Vec2(pos.x - 40, pos.y));
 							Eshot[i]->fired = true;
 							firetimer = 0;
@@ -328,6 +340,7 @@ void game::update(float delta)
 			{
 				if (shot[i]->fired == false)
 				{
+					CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("pew.mp3", false);
 					shot[i]->image->setPosition(Vec2(currentPos.x + 75, currentPos.y));
 					shot[i]->fired = true;
 					firetimer = 1;
@@ -357,10 +370,14 @@ void game::update(float delta)
 						{
 							if (collisionsSphereSphere(shot[i]->image, Enemylist[j]->image))
 							{
-								Enemylist[j]->despawn();
+								
+								CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
+								smokeParticle->setPosition(Enemylist[j]->getPos());
+								smokeParticle->draw();
 								shot[i]->fired = false;
 								shot[i]->image->setPosition(Vec2(-10, -10));
 								scoreValue += 10;
+								Enemylist[j]->despawn();
 							}
 						}
 						else
@@ -370,6 +387,7 @@ void game::update(float delta)
 								if (collisionsBoxBox(shot[i]->image, Enemylist[j]->image))
 								{
 									Enemylist[j]->despawn();
+									CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 									shot[i]->fired = false;
 									shot[i]->image->setPosition(Vec2(-10, -10));
 									scoreValue += 15;
@@ -388,6 +406,7 @@ void game::update(float delta)
 									else
 									{
 										Enemylist[j]->despawn();
+										CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3", false);
 										shot[i]->fired = false;
 										shot[i]->image->setPosition(Vec2(-10, -10));
 										if (j < 99)
@@ -463,8 +482,6 @@ bool game::collisionsSphereSphere(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Spr
 	
 	return false;
 }
-
-
 
 
 bool game::collisionsBoxBox(cocos2d::Sprite* Sprite1, cocos2d::Sprite* Sprite2){

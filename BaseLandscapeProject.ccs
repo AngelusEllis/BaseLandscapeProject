@@ -23,6 +23,11 @@
         <Image Name="Boss.png" />
         <Image Name="pause.png" />
         <Image Name="play.png" />
+        <PlistParticleFile Name="particle_texture.plist" />
+        <Audio Name="pew.mp3" />
+        <Audio Name="mars.mp3" />
+        <Audio Name="boom.mp3" />
+        <PlistParticleFile Name="boom.plist" />
       </RootFolder>
     </Group>
   </SolutionFolder>
